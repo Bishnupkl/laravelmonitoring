@@ -21,7 +21,7 @@ class MonitorWebsites extends Command {
         $runOnce = $isTesting; // If in testing, run only once
 
         while (true) {
-            $lock = Cache::lock('website_monitoring_lock', 10);
+            $lock = Cache::lock('website_monitoring_lock', 15*60);
 
             if ($lock->get()) {
                 try {
@@ -49,7 +49,7 @@ class MonitorWebsites extends Command {
                 break; // 🚀 Exit the loop in testing mode!
             }
 
-            sleep(10);
+            sleep(15*60);
         }
     }
 
