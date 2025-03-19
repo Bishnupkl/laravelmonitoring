@@ -13,11 +13,15 @@ class MonitorWebsites extends Command {
     protected $description = 'Monitor websites every 15 minutes without cron';
 
     public function handle(): void {
+//        Log::info("Hello World");
+
         $this->info('Starting website monitoring daemon...');
 
-        while (true) {
+        $isTesting = app()->environment('testing'); // Detect test environment
+        $runOnce = $isTesting; // If in testing, run only once
 
-            $lock = Cache::lock('website_monitoring_lock', 15*60);
+        while (true) {
+            $lock = Cache::lock('website_monitoring_lock', 10);
 
             if ($lock->get()) {
                 try {
@@ -25,6 +29,7 @@ class MonitorWebsites extends Command {
 
                     Website::chunk(100, function ($websites) {
                         foreach ($websites as $website) {
+//                            echo $website->url . "\n";
                             CheckWebsite::dispatch($website)->onQueue('website_checks');
                         }
                     });
@@ -39,8 +44,13 @@ class MonitorWebsites extends Command {
             } else {
                 $this->info('Monitoring already in progress, skipping this cycle.');
             }
-            sleep(15*60); // 15 minutes
 
+            if ($runOnce) {
+                break; // 🚀 Exit the loop in testing mode!
+            }
+
+            sleep(10);
         }
     }
+
 }

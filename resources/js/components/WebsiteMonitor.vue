@@ -199,6 +199,7 @@ export default {
         addWebsite() {
             if (this.form.websites.length < 10 && !this.checkDuplicates()) {
                 this.form.websites.push('');
+                alert('Not more than 10 Websites is allowed.');
             }
         },
         removeWebsite(index) {

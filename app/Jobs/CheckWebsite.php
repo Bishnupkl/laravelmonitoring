@@ -12,15 +12,20 @@ use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 
-class CheckWebsite implements ShouldQueue {
+class CheckWebsite implements ShouldQueue
+{
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
     public $tries = 3;
     public $timeout = 15;
 
-    public function __construct(public Website $website) {}
+    public function __construct(public Website $website)
+    {
+    }
 
-    public function handle(WebsiteChecker $checker): void {
+    public function handle(WebsiteChecker $checker): void
+    {
+
         Log::debug("Starting check for {$this->website->url}, attempt {$this->attempts()} of {$this->tries}");
 
         $result = $checker->check($this->website->url);
@@ -44,10 +49,10 @@ class CheckWebsite implements ShouldQueue {
         }
     }
 
-    protected function sendAlert(?string $error = null): void {
-        $message = $error && str_contains($error, 'cURL error 28')
-            ? "{$this->website->url} is down due to a timeout!"
-            : "{$this->website->url} is down!";
+    protected function sendAlert(): void
+    {
+        $message ="{$this->website->url} is down!";
+
 
         Log::info("Sending email for {$this->website->url} to {$this->website->client->email}: $message");
         try {
