@@ -1,66 +1,177 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# 🌐 Website Uptime Monitor
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+![GitHub repo size](https://img.shields.io/github/repo-size/Bishnupkl/laravelmonitoring) ![GitHub last commit](https://img.shields.io/github/last-commit/Bishnupkl/laravelmonitoring) ![GitHub license](https://img.shields.io/github/license/Bishnupkl/laravelmonitoring)
 
-## About Laravel
+**A robust Laravel-powered uptime monitoring system with a sleek Vue.js frontend.**
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Welcome to the **Website Uptime Monitor**, a final project by **Bishnu Pokhrel** (Student ID: [Your Student ID Here]). This application monitors website availability every 15 minutes, sends real-time email alerts when sites go down, and provides a foundation for a modern dashboard built with Vue.js. Whether it’s a timeout, DNS failure, or server issue, you’ll know the moment it happens!
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+---
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## 🗃️ Project Overview
 
-## Learning Laravel
+This project combines a powerful Laravel backend with a Vue.js frontend to deliver a seamless uptime monitoring experience. It checks registered websites, detects issues like timeouts (e.g., cURL error 28), and notifies users via email—all while offering a scalable, queue-driven architecture.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### ✨ Key Features
+- **Website Registration**: Add websites with client emails for monitoring.
+- **Real-Time Monitoring**: Checks every 15 minutes with a 10-second timeout threshold.
+- **Email Alerts**: Instant notifications via Mailtrap when sites are down.
+- **Queue Processing**: Powered by Redis for efficient, asynchronous checks.
+- **Vue.js Frontend**: A responsive dashboard (in progress) to visualize uptime status.
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+---
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## 🛠️ Technology Stack
 
-## Laravel Sponsors
+### Backend
+- **Laravel 10** - PHP framework for robust backend logic.
+- **PHP 8.x** - Modern PHP runtime.
+- **Redis** - Queue driver for async job processing.
+- **MySQL** - Database for storing clients and websites.
+- **Guzzle** - HTTP client for website checks.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+### Frontend
+- **Vue.js 3** - Reactive JavaScript framework for a dynamic UI.
+- **Vite** - Fast frontend build tool bundled with Laravel.
 
-### Premium Partners
+### Email
+- **Mailtrap** - SMTP service for testing email alerts.
+- **Laravel Mail** - Email sending integration.
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+### Tools
+- **Supervisor** - Keeps monitoring and queue processes running.
+- **Artisan** - Custom commands for monitoring (`websites:monitor`).
 
-## Contributing
+---
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## 🚀 Getting Started
 
-## Code of Conduct
+Follow these steps to set up the project locally or deploy it to a server.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+### Prerequisites
+- 🖥️ PHP 8.x & Composer
+- 🌐 Node.js 18.x & npm
+- 🗄️ MySQL
+- 🔴 Redis
+- 💎 Mailtrap account
+- ☁️ Optional: AWS account for production
 
-## Security Vulnerabilities
+---
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+### Installation
 
-## License
+#### 1. Clone the Repository
+```bash
+git clone https://github.com/Bishnupkl/laravelmonitoring
+cd laravelmonitoring
+```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+#### 2. Backend Setup (Laravel)
+1. **Install PHP Dependencies**:
+   ```bash
+   composer install
+   ```
+2. **Set Up Environment**:
+    - Copy `.env.example` to `.env`:
+      ```bash
+      cp .env.example .env
+      ```
+    - Edit `.env` with your credentials:
+      ```env
+      DB_CONNECTION=mysql
+      DB_HOST=127.0.0.1
+      DB_PORT=3306
+      DB_DATABASE=uptime_monitor
+      DB_USERNAME=root
+      DB_PASSWORD=your_password
+
+      QUEUE_CONNECTION=redis
+      REDIS_HOST=127.0.0.1
+      REDIS_PASSWORD=null
+      REDIS_PORT=6379
+
+      MAIL_MAILER=smtp
+      MAIL_HOST=smtp.mailtrap.io
+      MAIL_PORT=2525
+      MAIL_USERNAME=your-mailtrap-username
+      MAIL_PASSWORD=your-mailtrap-password
+      MAIL_ENCRYPTION=tls
+      MAIL_FROM_ADDRESS=do-not-reply@example.com
+      MAIL_FROM_NAME="Uptime Monitor"
+      ```
+3. **Generate App Key**:
+   ```bash
+   php artisan key:generate
+   ```
+4. **Run Migrations**:
+   ```bash
+   php artisan migrate
+   ```
+
+#### 3. Frontend Setup (Vue.js)
+1. **Install Node Dependencies**:
+   ```bash
+   npm install
+   ```
+2. **Start Development Server**:
+   ```bash
+   npm run dev  # Or use npm run watch
+   ```
+3. **Build Frontend for Production**:
+   ```bash
+   npm run build
+   ```
+
+#### 4. Start the Application
+- **Run Laravel Server**:
+  ```bash
+  php artisan serve
+  ```
+- **Run Monitoring Daemon**:
+  ```bash
+  php artisan websites:monitor
+  ```
+- **Run Queue Worker**:
+  ```bash
+  php artisan queue:work redis --queue=website_checks --tries=3 --timeout=30
+  ```
+
+---
+
+## 🧠 Automated Monitoring with Cron
+The system is already set up to work with **cron jobs**. Add the following cron job to run the monitor command automatically:
+
+```bash
+* * * * * cd /path/to/your/project && php artisan schedule:run >> /dev/null 2>&1
+```
+
+This ensures Laravel's scheduler runs as expected.
+
+---
+
+## 🧬 Testing
+1. **Run Monitoring Tests**:
+   ```bash
+   php artisan test --filter=MonitorWebsitesTest
+   ```
+2. **Run General Tests**:
+   ```bash
+   php artisan test
+   ```
+3. **Manually Check Monitoring**:
+   ```bash
+   php artisan websites:monitor
+   ```
+
+Two test files have been created for monitoring commands to ensure reliability.
+
+---
+
+## 📸 Screenshots
+
+
+---
+
+## 🛡️ License
+This project is licensed under the MIT License.
+
