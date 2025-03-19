@@ -16,6 +16,7 @@ class MonitorWebsites extends Command {
         $this->info('Starting website monitoring daemon...');
 
         while (true) {
+
             $lock = Cache::lock('website_monitoring_lock', 15*60);
 
             if ($lock->get()) {
@@ -38,8 +39,8 @@ class MonitorWebsites extends Command {
             } else {
                 $this->info('Monitoring already in progress, skipping this cycle.');
             }
+            sleep(15*60); // 15 minutes
 
-            sleep(900); // 15 minutes
         }
     }
 }
