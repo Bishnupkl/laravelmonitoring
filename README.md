@@ -152,6 +152,7 @@ This ensures Laravel's scheduler runs as expected.
 ## 🧬 Testing
 1. **Run Monitoring Tests**:
    ```bash
+   php artisan test --filter=CheckWebsitesTest
    php artisan test --filter=MonitorWebsitesTest
    ```
 2. **Run General Tests**:
@@ -168,10 +169,10 @@ Two test files have been created for monitoring commands to ensure reliability.
 ---
 
 ## 📸 Screenshots
+https://github.com/Bishnupkl/laravelmonitoring/blob/master/screenshots/Screenshot%20from%202025-03-19%2000-06-52.png
+https://github.com/Bishnupkl/laravelmonitoring/blob/master/screenshots/Screenshot%20from%202025-03-19%2000-06-57.png
+https://github.com/Bishnupkl/laravelmonitoring/blob/master/screenshots/Screenshot%20from%202025-03-19%2000-07-07.png
+https://github.com/Bishnupkl/laravelmonitoring/blob/master/screenshots/Screenshot%20from%202025-03-19%2000-13-01.png
 
-
----
-
-## 🛡️ License
-This project is licensed under the MIT License.
+)
 
